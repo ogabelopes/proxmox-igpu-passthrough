@@ -1,0 +1,7 @@
+# /etc/modules
+vfio
+vfio_iommu_type1
+vfio_pci
+# Optional: keeps amdgpu loaded for a host-side rebind (the #131 hook).
+# Harmless if you do not use it; vfio-pci still claims the GPU first.
+amdgpu
