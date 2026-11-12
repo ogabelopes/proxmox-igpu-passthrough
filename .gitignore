@@ -1,0 +1,14 @@
+# Vendor firmware must never be committed (extract it from your own hardware)
+*.rom
+vbios*.bin
+*.vbios
+
+# OS / editor noise
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# Python
+__pycache__/
+*.pyc

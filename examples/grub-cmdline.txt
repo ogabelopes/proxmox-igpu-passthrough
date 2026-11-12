@@ -1,0 +1,4 @@
+# /etc/default/grub -- the passthrough-relevant line
+# No nomodeset: it sets drm_firmware_drivers_only() and amdgpu_init() then returns EINVAL.
+# sysfb_init is blacklisted so the EFI framebuffer does not claim the GPU aperture.
+GRUB_CMDLINE_LINUX_DEFAULT="quiet amd_iommu=on iommu=pt pci=realloc initcall_blacklist=sysfb_init video=efifb:off"

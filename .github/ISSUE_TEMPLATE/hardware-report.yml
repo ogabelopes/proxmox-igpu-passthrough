@@ -1,0 +1,94 @@
+name: Hardware report
+description: Report a working (or failing) APU passthrough configuration
+title: "[HW] <APU> on Proxmox VE <version>"
+labels: ["hardware-report"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting! **Remove hostnames, IP addresses, VMIDs, MACs and UUIDs
+        before pasting anything.** Firmware blobs are not accepted.
+
+  - type: input
+    id: cpu
+    attributes:
+      label: CPU / APU
+      placeholder: Ryzen 9 6900HX
+    validations:
+      required: true
+
+  - type: input
+    id: gpu
+    attributes:
+      label: Display + audio PCI IDs
+      description: Output of `lspci -nn | grep -i 'vga\|audio'`
+      placeholder: "1002:1681 (VGA), 1002:1640 (audio)"
+    validations:
+      required: true
+
+  - type: input
+    id: pve
+    attributes:
+      label: Proxmox VE version
+      placeholder: 8.4.21
+    validations:
+      required: true
+
+  - type: input
+    id: kernel
+    attributes:
+      label: Kernel
+      placeholder: 6.8.12-43-pve
+    validations:
+      required: true
+
+  - type: input
+    id: qemu
+    attributes:
+      label: QEMU version
+      placeholder: 9.2.0-5
+    validations:
+      required: false
+
+  - type: dropdown
+    id: guest
+    attributes:
+      label: Guest
+      options:
+        - Windows 11
+        - Windows 10
+        - Linux
+        - Other
+    validations:
+      required: true
+
+  - type: dropdown
+    id: result
+    attributes:
+      label: Result
+      options:
+        - Works, including guest reboots
+        - Works, but a guest reboot needs a cold start
+        - Black screen on first start
+        - Error 43 in Device Manager
+        - Works only after a host power cycle
+        - Other
+    validations:
+      required: true
+
+  - type: textarea
+    id: check
+    attributes:
+      label: check-passthrough.sh output
+      description: Sanitize it first (no hostnames/IPs/VMIDs/UUIDs).
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: notes
+    attributes:
+      label: Notes
+      description: VM config (sanitized), what you tried, links to logs.
+    validations:
+      required: false
